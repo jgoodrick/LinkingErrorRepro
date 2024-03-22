@@ -37,14 +37,12 @@ extension SharedTargetID {
             // Shared Core
         case .Shared_Component_C:
             return [
-                .external(name: "ComposableArchitecture", condition: .none),
                 .target(name: SharedTargetID.Shared_Architecture.targetName, condition: .none),
                 .target(name: SharedTargetID.Shared_Layouts.targetName, condition: .none),
                 .target(name: SharedTargetID.Shared_Models.targetName, condition: .none),
             ]
         case .Shared_Component_D:
             return [
-                .external(name: "ComposableArchitecture", condition: .none),
                 .target(name: SharedTargetID.Shared_Architecture.targetName, condition: .none),
                 .target(name: SharedTargetID.Shared_Layouts.targetName, condition: .none),
                 .target(name: SharedTargetID.Shared_Models.targetName, condition: .none),
