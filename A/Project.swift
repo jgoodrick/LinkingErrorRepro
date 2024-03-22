@@ -15,6 +15,13 @@ enum TargetID: String, CaseIterable {
     case A_Kit
     case A_Kit_Example_App
     case A_Kit_Tests
+    
+    case Shared_Component_C
+    case Shared_Component_D
+    case Shared_Architecture
+    case Shared_Layouts
+    case Shared_Models
+
 }
 
 extension TargetID {
@@ -22,9 +29,9 @@ extension TargetID {
         switch self {
         case .A_Production_App:
             return [
-                .shared(.Shared_Component_C),
-                .shared(.Shared_Layouts),
-                .shared(.Shared_Models),
+                .target(name: TargetID.Shared_Component_C.targetName, condition: .none),
+                .target(name: TargetID.Shared_Layouts.targetName, condition: .none),
+                .target(name: TargetID.Shared_Models.targetName, condition: .none),
 
                 .target(name: TargetID.A_Core.targetName, condition: .none)
             ]
@@ -34,9 +41,9 @@ extension TargetID {
             ]
         case .A_Core:
             return [
-                .shared(.Shared_Component_C),
-                .shared(.Shared_Layouts),
-                .shared(.Shared_Models),
+                .target(name: TargetID.Shared_Component_C.targetName, condition: .none),
+                .target(name: TargetID.Shared_Layouts.targetName, condition: .none),
+                .target(name: TargetID.Shared_Models.targetName, condition: .none),
             ]
         case .A_Core_Tests:
             return [
@@ -44,9 +51,9 @@ extension TargetID {
             ]
         case .A_Kit:
             return [
-                .shared(.Shared_Component_C),
-                .shared(.Shared_Layouts),
-                .shared(.Shared_Models),
+                .target(name: TargetID.Shared_Component_C.targetName, condition: .none),
+                .target(name: TargetID.Shared_Layouts.targetName, condition: .none),
+                .target(name: TargetID.Shared_Models.targetName, condition: .none),
 
                 .target(name: TargetID.A_Core.targetName, condition: .none)
             ]
@@ -57,6 +64,29 @@ extension TargetID {
         case .A_Kit_Tests:
             return [
                 .target(name: TargetID.A_Kit.targetName, condition: .none)
+            ]
+        case .Shared_Component_C:
+            return [
+                .target(name: TargetID.Shared_Architecture.targetName, condition: .none),
+                .target(name: TargetID.Shared_Layouts.targetName, condition: .none),
+                .target(name: TargetID.Shared_Models.targetName, condition: .none),
+            ]
+        case .Shared_Component_D:
+            return [
+                .target(name: TargetID.Shared_Architecture.targetName, condition: .none),
+                .target(name: TargetID.Shared_Layouts.targetName, condition: .none),
+                .target(name: TargetID.Shared_Models.targetName, condition: .none),
+            ]
+        case .Shared_Architecture:
+            return [
+                .external(name: "ComposableArchitecture", condition: .none),
+            ]
+        case .Shared_Layouts:
+            return [
+                .target(name: TargetID.Shared_Models.targetName, condition: .none),
+            ]
+        case .Shared_Models:
+            return [
             ]
         }
     }
@@ -105,7 +135,7 @@ extension TargetID: TargetDescription {
             .app
         case .A_Production_App_Tests, .A_Kit_Tests, .A_Core_Tests:
             .unitTests
-        case .A_Core, .A_Kit:
+        default:
             .framework
         }
     }
