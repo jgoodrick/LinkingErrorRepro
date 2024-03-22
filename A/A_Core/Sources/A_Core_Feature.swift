@@ -1,4 +1,5 @@
 
+import Shared_Component_C
 import ComposableArchitecture
 import SwiftUI
 
@@ -13,6 +14,11 @@ public struct ACoreFeature {
         }
         
         var message: String = "A Core Feature"
+        var component: ComponentC.State = .init(message: "injected message")
+    }
+    
+    public enum Action {
+        case component(ComponentC.Action)
     }
 }
 
@@ -23,6 +29,10 @@ public struct ACoreFeatureView: View {
     
     let store: StoreOf<ACoreFeature>
     public var body: some View {
-        Text(store.message)
+        VStack {
+            Text(store.message)
+            ComponentCView(store: store.scope(state: \.component, action: \.component))
+        }
+        .background(Color.gray)
     }
 }

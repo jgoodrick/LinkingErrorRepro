@@ -81,7 +81,7 @@ public extension TargetDescription {
     }
     var productName: String? { underscored }
     var bundleId: String { "com.minimal.repro.\(dotted)" }
-    var deploymentTargets: DeploymentTargets { .iOS("16.0") }
+    var deploymentTargets: DeploymentTargets { .iOS("17.0") }
     var entitlements: Entitlements? { .none }
     var resources: ResourceFileElements? { .none }
     var infoPlist: InfoPlist? { .default }
