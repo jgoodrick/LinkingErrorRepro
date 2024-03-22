@@ -2,16 +2,16 @@
 
 import PackageDescription
 
-//#if TUIST
-//    import ProjectDescription
-//    import ProjectDescriptionHelpers
-//
-//    let packageSettings = PackageSettings(
-//        productTypes: [
-//            "ComposableArchitecture": .macro,
-//        ]
-//    )
-//#endif
+#if TUIST
+    import ProjectDescription
+    import ProjectDescriptionHelpers
+
+    let packageSettings = PackageSettings(
+        productTypes: [
+            "ComposableArchitecture": .framework,
+        ]
+    )
+#endif
 
 let package = Package(
     name: "Packages",
